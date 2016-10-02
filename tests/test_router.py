@@ -1,9 +1,14 @@
+import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
 from nose import with_setup
 
-from .context.superhub.pages import DeviceConnectionStatusPage, DhcpReservationPage, IpFilteringPage, MacFilteringPage, \
+from superhub.pages import DeviceConnectionStatusPage, DhcpReservationPage, IpFilteringPage, MacFilteringPage, \
     PortBlockingPage, PortForwardingPage, PortTriggeringPage
-from .context.superhub.router import Router
-from .context.superhub.utils.password_vault import PasswordVault
+from superhub.router import Router
+from superhub.utils.password_vault import PasswordVault
 
 
 def setup_func():

@@ -5,8 +5,8 @@ from collections import namedtuple, OrderedDict
 import requests
 from bs4 import BeautifulSoup
 
-from superhub.requests.router import PageError
-from utils.table import Table
+from superhub.router import PageError
+from superhub.utils.table import Table
 
 
 def get_table_from_list(name, text, caption, headers):

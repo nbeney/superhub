@@ -1,9 +1,12 @@
 import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from click.testing import CliRunner
 from nose import with_setup
 
-from  .context.superhub import cli
+from superhub.cli import cli
 
 runner = CliRunner()
 

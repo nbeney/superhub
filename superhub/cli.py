@@ -5,9 +5,9 @@ from fnmatch import fnmatch
 
 import click
 
-from superhub.requests.pages import DeviceConnectionStatusPage, DhcpReservationPage, IpFilteringPage, MacFilteringPage, \
+from superhub.pages import DeviceConnectionStatusPage, DhcpReservationPage, IpFilteringPage, MacFilteringPage, \
     PortBlockingPage, PortForwardingPage, PortTriggeringPage
-from superhub.requests.router import Router, SuperHubError
+from superhub.router import Router, SuperHubError
 
 
 def validate_mac_address(ctx, param, value):
@@ -79,7 +79,10 @@ def ip(ctx):
 @pass_context
 def list_ip(ctx):
     with get_router(ctx) as router:
-        IpFilteringPage(router).ip_filter_list.pretty_print(caption=False)
+        page = IpFilteringPage(router)
+        page.attached_devices.pretty_print(caption=False)
+        print()
+        page.ip_filter_list.pretty_print(caption=False)
 
 
 @cli.group(help="MAC related commands.")
@@ -92,7 +95,10 @@ def mac(ctx):
 @pass_context
 def list_mac(ctx):
     with get_router(ctx) as router:
-        MacFilteringPage(router).mac_filter_list.pretty_print(caption=False)
+        page = MacFilteringPage(router)
+        page.attached_devices.pretty_print(caption=False)
+        print()
+        page.mac_filter_list.pretty_print(caption=False)
 
 
 @mac.command(name="add", help="Add a new entry to the MAC Filter table.")
