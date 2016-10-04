@@ -110,7 +110,7 @@ class DhcpReservationPage(Page):
         self.attached_devices = get_table_from_list("DHCPClientList", self.resp.text, "Attached Devices",
                                                     ["Device Name", "MAC Address", "IP Address", "Interface"])
         self.ip_lease_table = get_table_from_list("DHCPReservationList", self.resp.text, "IP Lease Table",
-                                                  ["Device Name", "MAC Address", "IP Address", "Expires"])
+                                                  ["Device Name", "IP Address", "MAC Address", "Expires"])
         self.tables = [self.attached_devices, self.ip_lease_table]
 
 

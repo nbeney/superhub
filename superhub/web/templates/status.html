@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>Status</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <script src="/static/sorttable.js"></script>
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li><a {{"class=active" if active == "devices" else ""}} href="/devices">Devices</a></li>
+        <li><a {{"class=active" if active == "dhcp" else ""}} href="/dhcp">DHCP</a></li>
+        <li><a {{"class=active" if active == "ip" else ""}} href="/ip">IP</a></li>
+        <li><a {{"class=active" if active == "mac" else ""}} href="/mac">MAC</a></li>
+        <li><a {{"class=active" if active == "ports" else ""}} href="/ports">Ports</a></li>
+    </ul>
+</div>
+<p>
+{% for table in tables %}
+    <h1>{{table.caption}}</h1>
+    <table class="sortable">
+        <tr>
+            {% for header in table.headers %}
+                <th>{{header}}</th>
+            {% endfor %}
+        </tr>
+        {% for row in table.rows %}
+            <tr>
+                {% for value in row %}
+                    <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+</p>
+<p><em>Last updated: {{timestamp}}</em></p>
+</body>
+</html>

@@ -1,8 +1,26 @@
+import operator
+
+from superhub.do_not_commit import device_dict, Device
+
+
 class Table:
     def __init__(self, caption, headers, rows):
         self.caption = caption
         self.headers = headers
         self.rows = rows
+
+        # TODO: Do this properly
+        DEVICE_NAME = "Device Name"
+        MAC_ADDRESS = "MAC Address"
+        if DEVICE_NAME in self.headers and MAC_ADDRESS in self.headers:
+            idx_device_name = self.headers.index(DEVICE_NAME)
+            idx_mac_address = self.headers.index(MAC_ADDRESS)
+            for row in self.rows:
+                device_name = row[idx_device_name]
+                mac_address = row[idx_mac_address]
+                device = Device(mac_address, device_name or "???")
+                row[idx_device_name] = device_dict.get(mac_address.upper(), device).name
+            self.rows = sorted(self.rows, key=operator.itemgetter(idx_device_name))
 
     def __str__(self):
         return "Table(caption={}, headers={}, rows={})".format(self.caption, self.headers, len(self.rows))
@@ -19,6 +37,7 @@ class Table:
     def has_values(self):
         def has(row):
             return any(len(str(_)) > 0 for _ in row)
+
         return any(has(_) for _ in self.rows)
 
     def pretty_print(self, caption=True):

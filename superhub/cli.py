@@ -69,6 +69,22 @@ def status(ctx):
         PortTriggeringPage(router).dump()
 
 
+@cli.group(help="DHCP related commands.")
+@pass_context
+def dhcp(ctx):
+    pass
+
+
+@dhcp.command(name="list", help="Print the DHCP lease table.")
+@pass_context
+def list_dhcp(ctx):
+    with get_router(ctx) as router:
+        page = DhcpReservationPage(router)
+        page.attached_devices.pretty_print(caption=False)
+        print()
+        page.ip_lease_table.pretty_print(caption=False)
+
+
 @cli.group(help="IP related commands.")
 @pass_context
 def ip(ctx):
