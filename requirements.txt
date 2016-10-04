@@ -1,2 +1,5 @@
+bs4
+click
 nose
+requests
 sphinx
