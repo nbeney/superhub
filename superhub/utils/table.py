@@ -1,6 +1,6 @@
 import operator
 
-from superhub.do_not_commit import device_dict, Device
+from superhub.settings import device_dict, Device
 
 
 class Table:
