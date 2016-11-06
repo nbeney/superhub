@@ -17,6 +17,7 @@ enc_device_list = [
     Device(name='pi1', mac_address=b'tW2hZ6lqyM1rnrVvoGuslZc='),
     Device(name='pi2', mac_address=b'tW2hZ6lqyM1rcbRvmJesack='),
     Device(name='pi3', mac_address=b'tW2hZ6lqyM1rabhvy5askZg='),
+    Device(name='printer', mac_address=b'iWWha9ZqxqJrcIRvm2usZpc='),
     Device(name='kano', mac_address=b'g2WhmKNql5xraohvl2askZc='),
     Device(name='tablet-nexus', mac_address=b't22haqJqyKFrb4xvymysYMk='),
     Device(name='tablet-samsung', mac_address=b'hWWhmaVqnJtrnYxvzGWsZpc='),

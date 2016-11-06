@@ -1,5 +1,6 @@
 import base64
 
+from superhub.utils.password_vault import PasswordVault
 
 def encode(key, plaintext):
     ciphertext = []
@@ -21,8 +22,11 @@ def decode(key, ciphertext):
 
 
 if __name__ == "__main__":
-    key = "6a5s4d6%^$^SA^%"
-    plaintext = "The brown lazy fox jumped over the fence."
-    ciphertext = encode(key, plaintext)
-    print(ciphertext)
-    print(decode(key, ciphertext))
+    key = PasswordVault.get()
+    plaintext = input("Plaintext?  ")
+    while plaintext:
+        ciphertext = encode(key, plaintext)
+        print("Ciphertext: ", ciphertext)
+        print("Check:      ", decode(key, ciphertext))
+        print()
+        plaintext = input("Plaintext?  ")
